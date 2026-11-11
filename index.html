@@ -270,6 +270,8 @@ dialog::backdrop{background:rgba(16,29,53,.55);backdrop-filter:blur(3px)}
 .tcard a.act::after{content:"";position:absolute;inset:-420px -420px -420px -420px}
 .tcard a.act:hover .circ{transform:translate(3px,-3px)}
 .tcard .act.off{color:var(--slate);font-weight:500;font-size:15px;border:1.5px dashed var(--slate);padding:9px 16px;border-radius:99px}
+.tcard:nth-child(3){grid-column:1/-1;min-height:0}
+.tcard .tdesc{position:relative;max-width:46em;font-size:16px;line-height:1.55;color:var(--slate)}
 
 /* ABOUT */
 .about .blk.b1{width:34vw;height:55%;left:-10vw;top:30%;background:var(--pale)}
@@ -633,7 +635,7 @@ h1.name{font-size:clamp(54px,7.6vw,108px);margin:20px 0 16px}
       <h2 id="tdTitle">I don't just use products. <em>I pull them apart.</em></h2>
       <p>Independent analyses of real lending journeys: where customers may get stuck, what I would change and how I would test it.</p>
     </div>
-    <p class="disc reveal"><b>Independent analysis.</b> Not commissioned by, or affiliated with, KreditBee or Zype. Proposed improvements and expected impact are my hypotheses until validated.</p>
+    <p class="disc reveal"><b>Independent analysis.</b> Not commissioned by, or affiliated with, KreditBee, Zype or RapidMoney. Proposed improvements and expected impact are my hypotheses until validated.</p>
     <div class="td" id="td"></div>
   </div>
 </section>
@@ -873,7 +875,12 @@ const SITE_CONFIG = {
     { title: "Zype", subtitle: "Personal Loan Journey", tag: "Personal loan",
       pdfPath: "assets/Zype_Personal_Loan_Product_Teardown_Chetan_Singh.pdf",
       focus: ["Basic-data prefill","Email & address verification","Contextual help","Rejection & recovery","Dashboard empty states","Cross-product discovery","Support & engagement"],
-      validate: "prefill acceptance, verification completion, recovery after rejection, contacts per application." }
+      validate: "prefill acceptance, verification completion, recovery after rejection, contacts per application." },
+    { title: "RapidMoney", subtitle: "Growth Product Teardown", tag: "Digital lending",
+      pdfPath: "assets/RapidMoney_Product_Teardown.pdf",
+      desc: "An independent teardown of RapidMoney's digital loan application journey, examining funnel friction, form simplification, intelligent data prefill, customer-friendly communication and assessment fee conversion.",
+      focus: ["Loan application funnel","Fewer steps & repeat entry","Intelligent data prefill","UX copy & terminology","Assessment fee conversion","Funnel measurement & experiments"],
+      cta: "View Product Teardown" }
   ],
 
   /* ---------- Projects ---------- */
@@ -1112,6 +1119,7 @@ td.innerHTML = C.teardowns.map((t, i) => `
   <article class="tcard reveal ${i ? 'd1' : ''}" data-initial="${esc(t.title[0])}">
     <div class="tmeta"><span class="pill">${esc(t.tag || 'Teardown')}</span><span class="ind">Independent analysis · 0${i+1}</span></div>
     <h3>${esc(t.title)}<small>${esc(t.subtitle)}</small></h3>
+    ${t.desc ? `<p class="tdesc">${esc(t.desc)}</p>` : ''}
     <div class="tags">${(t.focus || []).map(f => `<span class="chip">${esc(f)}</span>`).join('')}</div>
     ${t.validate ? `<p class="vnote"><b>Metrics I would use to validate my recommendations:</b> ${esc(t.validate)}</p>` : ''}
     <span class="act off" data-act>Checking PDF…</span>
@@ -1123,7 +1131,7 @@ C.teardowns.forEach(async (t, i) => {
     const a = document.createElement('a');
     a.className = 'act on'; a.href = t.pdfPath; a.target = '_blank'; a.rel = 'noopener';
     a.setAttribute('aria-label', `Open ${t.title} teardown (PDF, new tab)`);
-    a.innerHTML = '<span class="circ" aria-hidden="true">↗</span>Open teardown';
+    a.innerHTML = `<span class="circ" aria-hidden="true">↗</span>${esc(t.cta || 'Open teardown')}`;
     slot.replaceWith(a); card.classList.add('ready');
   } else { slot.textContent = 'Add PDF to activate'; }
 });
