@@ -255,7 +255,7 @@ dialog::backdrop{background:rgba(16,29,53,.55);backdrop-filter:blur(3px)}
   transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));
   transition:transform .45s var(--ease),box-shadow .35s,opacity .8s var(--ease),translate .8s var(--ease)}
 .tcard.tilting{transition:transform .08s linear,box-shadow .35s,opacity .8s var(--ease),translate .8s var(--ease)}
-.tcard:nth-child(2){--c:var(--navy);margin-top:44px}
+.tcard:nth-child(2),.tcard:nth-child(4){--c:var(--navy);margin-top:44px}
 .tcard.ready:hover{--ty:-8px;box-shadow:10px 10px 0 var(--c)}
 .tcard::before{content:attr(data-initial);position:absolute;right:-24px;bottom:-110px;font-family:var(--display);font-size:420px;font-weight:800;letter-spacing:-.08em;line-height:1;color:var(--c);opacity:.09;pointer-events:none;transition:transform .6s var(--ease),opacity .4s}
 .tcard.ready:hover::before{transform:translateX(-14px);opacity:.14}
@@ -270,7 +270,6 @@ dialog::backdrop{background:rgba(16,29,53,.55);backdrop-filter:blur(3px)}
 .tcard a.act::after{content:"";position:absolute;inset:-420px -420px -420px -420px}
 .tcard a.act:hover .circ{transform:translate(3px,-3px)}
 .tcard .act.off{color:var(--slate);font-weight:500;font-size:15px;border:1.5px dashed var(--slate);padding:9px 16px;border-radius:99px}
-.tcard:nth-child(3){grid-column:1/-1;min-height:0}
 .tcard .tdesc{position:relative;max-width:46em;font-size:16px;line-height:1.55;color:var(--slate)}
 
 /* ABOUT */
@@ -348,7 +347,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .intro .wrap{grid-template-columns:1fr}.media{justify-self:start}
   .cards{grid-template-columns:1fr}.card,.card:nth-child(n){grid-column:auto;margin-top:0;min-height:0}
   .explore,.live,.td,.about .cols,.tgrid{grid-template-columns:1fr}
-  .tcard:nth-child(2){margin-top:0}
+  .tcard:nth-child(2),.tcard:nth-child(4){margin-top:0}
   .side{transform:none}
   .shead{grid-template-columns:1fr}.shead p{grid-column:1}
 }
@@ -635,7 +634,7 @@ h1.name{font-size:clamp(54px,7.6vw,108px);margin:20px 0 16px}
       <h2 id="tdTitle">I don't just use products. <em>I pull them apart.</em></h2>
       <p>Independent analyses of real lending journeys: where customers may get stuck, what I would change and how I would test it.</p>
     </div>
-    <p class="disc reveal"><b>Independent analysis.</b> Not commissioned by, or affiliated with, KreditBee, Zype or RapidMoney. Proposed improvements and expected impact are my hypotheses until validated.</p>
+    <p class="disc reveal"><b>Independent analysis.</b> Not commissioned by, or affiliated with, KreditBee, Zype, RapidMoney or Apollo Cash. Proposed improvements and expected impact are my hypotheses until validated.</p>
     <div class="td" id="td"></div>
   </div>
 </section>
@@ -880,6 +879,9 @@ const SITE_CONFIG = {
       pdfPath: "assets/RapidMoney_Product_Teardown.pdf",
       desc: "An independent teardown of RapidMoney's digital loan application journey, examining funnel friction, form simplification, intelligent data prefill, customer-friendly communication and assessment fee conversion.",
       focus: ["Loan application funnel","Fewer steps & repeat entry","Intelligent data prefill","UX copy & terminology","Assessment fee conversion","Funnel measurement & experiments"],
+      cta: "View Product Teardown" },
+    { title: "Apollo Cash", subtitle: "Product Teardown", tag: "Digital lending",
+      pdfPath: "assets/Apollo_Cash_Teardown.pdf",
       cta: "View Product Teardown" }
   ],
 
